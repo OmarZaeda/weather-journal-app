@@ -26,14 +26,14 @@ app.listen(port, function setupServer() {
 
 // Get, Post
 
-app.get("/all", (req, res) => {
-  res.send(projectData).status(222);
+app.get("/getall", (req, res) => {
+  res.send(projectData).status(222).end();
 });
-app.post("/data", (res, req) => {
+app.post("/postData", (req, res) => {
   projectData = {
-    temp: request.body.temp,
-    data: request.body.date,
-    content: request.body.conetet,
+    temp: req.body.temp,
+    date: req.body.date,
+    content: req.body.content,
   };
-  response.send(projectData).status(222);
+  res.send(projectData).status(222).end();
 });
