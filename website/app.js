@@ -54,9 +54,6 @@ async function dataPostToServer(data) {
       },
       body: JSON.stringify(data),
     });
-
-    console.log(response);
-
     response
       .json()
       .then((data) => {
@@ -71,18 +68,8 @@ async function dataPostToServer(data) {
 
 async function updateUI() {
   const response = await fetch(`${apiUrl}/getall`);
-
-  console.log(response);
-  try {
-    response
-      .json()
-      .then((data) => {
-        dataElement.innerHTML = `The date is: ${data.date}`;
-        tempElement.innerHTML = `The temp is: ${data.temp}`;
-        contentElement.innerHTML = `The feelings is: ${data.content}`;
-      })
-      .catch(catchError);
-  } catch (error) {
-    catchError(error);
-  }
+  const data = await response.json();
+  dataElement.innerHTML = `The date is: ${data.date}`;
+  tempElement.innerHTML = `The temp is: ${data.temp}`;
+  contentElement.innerHTML = `The feelings is: ${data.content}`;
 }
