@@ -2,7 +2,7 @@
 const zipCodeElement = document.querySelector("#zip");
 const feelingsCodeElement = document.querySelector("#feelings");
 const catchError = (error) => console.error("Errors Found", error);
-const apikey = "&appid=84318483711b229c18554e9465aa8e3b";
+const apikey = "&appid=84318483711b229c18554e9465aa8e3b&units=imperial";
 const apiUrl = "http://localhost:3000";
 const dataElement = document.querySelector("#date"); // Data Container
 const tempElement = document.querySelector("#temp"); // Temp Container
@@ -16,7 +16,7 @@ function generateAction() {
   let data = {
     zipCode: zipCodeElement.value,
     content: feelingsCodeElement.value,
-    date: new Date(),
+    date: newDate,
   };
 
   zCodeInformation(data.zipCode)
@@ -34,7 +34,7 @@ function generateAction() {
 }
 // Create a new date instance dynamically with JS
 let d = new Date();
-let newDate = d.getMonth() + "." + d.getDate() + "." + d.getFullYear();
+let newDate = d.getMonth() + 1 + "/" + d.getDate() + "/" + d.getFullYear();
 
 async function zCodeInformation(zipCode) {
   const data = await fetch(
